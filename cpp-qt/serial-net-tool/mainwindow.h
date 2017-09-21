@@ -106,7 +106,7 @@ private slots:
 
     void on_serialPortCBox_currentIndexChanged(const QString &arg1);
 
-    void on_skinTogglePushButton_clicked();
+    void on_skinButton_clicked();
 
 public:
     int skin_mode;
@@ -116,7 +116,6 @@ private:
 
     QSerialPort *my_serialport;
     QTimer *myTimer_serial;
-
 
     int rfid_clear_times;
     uint8_t sn_num;
@@ -131,6 +130,9 @@ private:
 
     QStringList keys;           //模拟设备回复数据key
     QStringList values;         //模拟设备回复数据value
+
+    QString server_ip;
+    int server_port;
 
     QTcpSocket *tcpClient;
     TcpServer *tcpServer;

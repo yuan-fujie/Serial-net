@@ -644,13 +644,13 @@
      <string>other</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="skinTogglePushButton">
+   <widget class="QPushButton" name="skinButton">
     <property name="geometry">
      <rect>
-      <x>740</x>
+      <x>770</x>
       <y>10</y>
-      <width>36</width>
-      <height>40</height>
+      <width>21</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">

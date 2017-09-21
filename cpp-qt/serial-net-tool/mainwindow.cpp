@@ -107,15 +107,16 @@ void MainWindow::tcp_init()
 
     QString localHostName = QHostInfo::localHostName();
     QList<QHostAddress> addrs = QHostInfo::fromName(localHostName).addresses();
-    QString ip;
+    server_port = 6666;
+
     foreach (QHostAddress addr, addrs)
     {
         if (addr.protocol() == QAbstractSocket::IPv4Protocol)
         {
-            ip = addr.toString();
-            this->setWindowTitle(QString("Net-Tool 本机IP[%1]").arg(ip));
+            server_ip = addr.toString();
+            this->setWindowTitle(QString("Net-Tool 本机IP[%1]").arg(server_ip));
 #if QDEBUG_EN
-            qDebug() << ip;
+            qDebug() << server_ip;
 #endif
             break;
         }
@@ -179,11 +180,11 @@ void MainWindow::tcp_init()
     ui->tcpTypeComboBox->setCurrentIndex(0);
     ui->tcpTypeComboBox->setEnabled(true);
 
-    ui->tcpIPLineEdit->setText(ip);
-    ui->tcpPortLineEdit->setText(QString::number(6006));
-    int port = ui->tcpPortLineEdit->text().toInt();
+    ui->tcpIPLineEdit->setText(server_ip);
+    ui->tcpPortLineEdit->setText(QString::number(server_port));
+
 #if QDEBUG_EN
-    qDebug() << "ip:" << ip << "\nport:" << port;
+    qDebug() << "ip:" << server_ip << " port:" << server_port << "\n";
 #endif
 
 }
@@ -1133,7 +1134,7 @@ void MainWindow::on_serialPortCBox_currentIndexChanged(const QString &arg1)
     }
 }
 
-void MainWindow::on_skinTogglePushButton_clicked()
+void MainWindow::on_skinButton_clicked()
 {
     if(skin_mode == my_skin::white)
     {
