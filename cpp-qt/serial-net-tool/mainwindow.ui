@@ -284,7 +284,7 @@
        <x>10</x>
        <y>20</y>
        <width>361</width>
-       <height>161</height>
+       <height>171</height>
       </rect>
      </property>
      <property name="currentIndex">
@@ -385,7 +385,7 @@
          <x>250</x>
          <y>30</y>
          <width>101</width>
-         <height>101</height>
+         <height>91</height>
         </rect>
        </property>
       </widget>
@@ -599,16 +599,55 @@
      </rect>
     </property>
     <property name="title">
-     <string>other</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="skinButton">
     <property name="geometry">
      <rect>
-      <x>770</x>
+      <x>630</x>
       <y>10</y>
-      <width>21</width>
-      <height>21</height>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="minimizeButton">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>10</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="maximizeButton">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>10</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="closeButton">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>10</y>
+      <width>31</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">

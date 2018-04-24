@@ -25,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent) :
     current_time = QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss");
     msgMaxCount = 1000;
 
+    ui_style_init();
+
     config_init();
 
     myHelper::formInCenter(this);
@@ -33,6 +35,98 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::ui_style_init()
+{
+    QDesktopWidget *desktop = QApplication::desktop();
+     setMinimumSize(800, 600);
+     setMaximumSize(800, 600);
+     move((desktop->width() - this->width())/2, (desktop->height() - this->height())/2);
+
+     this->setWindowFlags(Qt::FramelessWindowHint |
+                          Qt::WindowSystemMenuHint |
+                          Qt::WindowMinMaxButtonsHint);
+
+     /* custom system btn */
+     ui->skinButton->setStyleSheet("border:none;");
+     ui->closeButton->setStyleSheet("border:none;");
+     ui->minimizeButton->setStyleSheet("border:none;");
+     ui->maximizeButton->setStyleSheet("border:none;");//去掉边框
+
+     connect( ui->minimizeButton, SIGNAL(clicked(bool)), this, SLOT( onMin(bool)) );
+     connect( ui->maximizeButton, SIGNAL(clicked(bool)), this, SLOT( onMaxOrNormal(bool)) );
+     {
+         QWidget *pWindow = this->window();
+         if (pWindow->isTopLevel())
+         {
+             bool bMaximize = pWindow->isMaximized();
+             ui->maximizeButton->setToolTip(bMaximize ? tr("Restore") : tr("Maximize"));
+             ui->maximizeButton->setProperty("maximizeProperty", bMaximize ? "restore" : "maximize");
+         }
+     }
+     connect( ui->closeButton, SIGNAL(clicked(bool)), this, SLOT( onClose(bool)) );
+}
+
+void MainWindow::onMin(bool)
+{
+    if( windowState() != Qt::WindowMinimized ){
+        setWindowState( Qt::WindowMinimized );
+    }
+}
+
+void MainWindow::onMaxOrNormal(bool)
+{
+    return ;
+
+    QWidget *pWindow = this->window();
+    if (pWindow->isTopLevel())
+    {
+        bool bMaximize = pWindow->isMaximized();
+        if( !bMaximize )
+        {
+            setWindowState( Qt::WindowMaximized );
+        }
+        else
+        {
+             setWindowState( Qt::WindowNoState );
+        }
+
+        ui->maximizeButton->setToolTip(!bMaximize ? tr("Restore") : tr("Maximize"));
+        ui->maximizeButton->setProperty("maximizeProperty", !bMaximize ? "restore" : "maximize");
+
+        // 手动更新样式
+        ui->maximizeButton->style()->unpolish(ui->maximizeButton);
+        ui->maximizeButton->style()->polish(ui->maximizeButton);
+        ui->maximizeButton->update();
+        //ui->maximizeButton-->setStyle(QApplication::style());
+    }
+}
+
+void MainWindow::onClose(bool)
+{
+    close();
+}
+
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton) {
+        dragPosition = event->globalPos() - frameGeometry().topLeft();
+        event->accept();
+    }
+}
+
+void MainWindow::mouseReleaseEvent(QMouseEvent *event)
+{
+    event->ignore();
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent *event)
+{
+    if (event->buttons() & Qt::LeftButton) {
+        move(event->globalPos() - dragPosition);
+        event->accept();
+    }
 }
 
 void MainWindow::config_init()

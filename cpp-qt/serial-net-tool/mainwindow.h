@@ -32,6 +32,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void ui_style_init();
     void config_init(void);
     void tcp_serial_init(void);
     void tcp_init();
@@ -47,6 +48,19 @@ public:
 
     qint64 serialport_write(const char *data, qint64 len);
 
+private slots:
+    /* custom system btn */
+    void onMin( bool );
+    void onMaxOrNormal( bool );
+    void onClose( bool );
+private:
+    bool maxOrNormal;//true表示当前窗口状态为normal，图标应显示为max
+
+    /* custom title bar */
+    void mousePressEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
+    void mouseReleaseEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
+    void mouseMoveEvent(QMouseEvent *event) Q_DECL_OVERRIDE;
+    QPoint dragPosition;
 
 public slots:
     void readComDataSlot(void);
