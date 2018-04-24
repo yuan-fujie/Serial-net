@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DynamicBufferManager.cs" />
     <Compile Include="network\Network.xaml.cs">
       <DependentUpon>Network.xaml</DependentUpon>
     </Compile>

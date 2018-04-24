@@ -6,9 +6,14 @@
         xmlns:MultiFunctionSerial="clr-namespace:Serial_net.SerialBasic"
         xmlns:MultiFunctionNet="clr-namespace:Serial_net.network"
         mc:Ignorable="d"
-        Title="Serial-net tools" Name="softWareMainWindow" Width="810" Height="640" MinWidth="810"  MinHeight="640">
-    <Grid>
-        <TabControl HorizontalAlignment="Left" Height="299" Margin="10,10,0,0" VerticalAlignment="Top" Width="497" Grid.ColumnSpan="4">
+        Title="Serial-net tools" Name="softWareMainWindow" Width="826" Height="651" MinWidth="600"  MinHeight="600">
+    <Grid Margin="0,0,0,2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="315*"/>
+            <ColumnDefinition Width="85*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TabControl HorizontalAlignment="Left" Height="600" Margin="10,10,-8,-6" VerticalAlignment="Top" Width="800" Grid.ColumnSpan="3">
             <TabItem Header="串口调试功能">
                 <MultiFunctionSerial:SerialBasic ></MultiFunctionSerial:SerialBasic>
             </TabItem>
