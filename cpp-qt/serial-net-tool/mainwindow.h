@@ -100,13 +100,10 @@ private slots:
 
     void on_receiveCheckBox_toggled(bool checked);
 
-    void on_timerDevCheckBox_toggled(bool checked);
-
-    void on_timesLineEdit_editingFinished();
-
     void on_serialPortCBox_currentIndexChanged(const QString &arg1);
 
     void on_skinButton_clicked();
+
 
 public:
     int skin_mode;

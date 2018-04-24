@@ -973,7 +973,7 @@ qint64 MainWindow::serialport_write(const char *data, qint64 len)
 
 void MainWindow::on_sendPushButton_clicked()
 {
-    QString str = QString(ui->sendComboBox->currentText());
+    QString str = ui->sendComboBox->currentText();
     QByteArray ba = QByteArray(str.toLatin1());
 
     if(ui->connectPushButton->text() == "断开")
@@ -1099,22 +1099,6 @@ void MainWindow::on_clear_pushButton_clicked()
 void MainWindow::on_quit_pushButton_clicked()
 {
     close();
-}
-
-void MainWindow::on_timerDevCheckBox_toggled(bool checked)
-{
-    if(checked)
-        timerDevUpdate->start();
-    else
-        timerDevUpdate->stop();
-}
-
-void MainWindow::on_timesLineEdit_editingFinished()
-{
-    timer_dev_update_n = ui->timesLineEdit->text().toInt();
-#if QDEBUG_EN
-    qDebug() << timer_dev_update_n;
-#endif
 }
 
 void MainWindow::on_serialPortCBox_currentIndexChanged(const QString &arg1)
